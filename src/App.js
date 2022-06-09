@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
+import env from 'react-dotenv';
 import './App.css';
 
 function App() {
@@ -16,8 +17,8 @@ function App() {
     let data = {
       "password": password,
       "email": email,
-      "client_secret": "c7257eb71a564034f9419ee651c7d0e5f7aa6bfbd18bafb5c5c033b093bb2fa3",
-      "client_id": "81527cff06843c8634fdc09e8ac0abefb46ac849f38fe1e431c2ef2106796384",
+      "client_secret": env.CLIENT_SECRET,
+      "client_id": env.CLIENT_ID,
       "grant_type": "refresh_token"
     }
 
