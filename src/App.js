@@ -22,10 +22,10 @@ function App() {
       "grant_type": "refresh_token"
     }
 
-    // axios.post("https://owner-api.teslamotors.com/oauth/token", data, config).then((response) => {
-    //   console.log(response)
-    // })
-    console.log(config, data, email, password)
+    axios.post("https://owner-api.teslamotors.com/oauth/token", data, config).then((response) => {
+      console.log(response)
+    })
+    // console.log(config, data, email, password)
   }
 
   return (
