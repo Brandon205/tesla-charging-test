@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import env from 'react-dotenv';
+// import env from 'react-dotenv';
 import './App.css';
 
 function App() {
@@ -11,36 +11,43 @@ function App() {
     let config ={
       headers: {
         "Access-Control-Allow-Origin": "*",
-      },
-      mode: 'cors'
+      }
     }
   
 
     let data = {
-      "password": password,
-      "email": email,
-      "client_secret": env.CLIENT_SECRET,
-      "client_id": env.CLIENT_ID,
-      "grant_type": "password"
+      'client_id': 'ownerapi',
+      'code_challenge': '123',
+      'code_challenge_method': 'S256',
+      'redirect-uri': 'https://auth.tesla.com/void/callback',
+      'response_type': 'code',
+      'scope': "openid email offline_access",
+      'state': '12345',
+      'login_hint': email
     }
 
-    // axios.post("https://owner-api.teslamotors.com/oauth/token", JSON.stringify(data), config).then((response) => {
+    // axios.post("https://auth.tesla.com/oauth2/v3/authorize", JSON.stringify(data), config).then((response) => {
     //   console.log(response)
     //   console.log("COPY THIS: ", response.data.access_token)
     // })
     
-    axios({
-      method: 'post',
-      url: 'https://owner-api.teslamotors.com/oauth/token',
-      // withCredentials: false,
-      // mode: 'cors',
-      data: JSON.stringify(data),
-      headers: config
-    }).then((res) => {
-      console.log(res)
-    })
+    // axios({
+    //   method: 'post',
+    //   url: 'https://auth.tesla.com/oauth2/v3/authorize',
+    //   // withCredentials: false,
+    //   // mode: 'cors',
+    //   data: JSON.stringify(data),
+    //   headers: config
+    // }).then((res) => {
+    //   console.log(res)
+    // })
 
-    console.log(JSON.stringify(config), JSON.stringify(data))
+    // axios.get('https://auth.tesla.com/oauth2/v3/authorize')
+    fetch('https://auth.tesla.com/oauth2/v3/authorize').then((res) => {
+      console.log(res)
+    });
+
+    // console.log(JSON.stringify(config), JSON.stringify(data))
   }
 
   return (
