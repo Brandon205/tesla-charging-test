@@ -8,24 +8,39 @@ function App() {
   const [password, setPassword] = useState("");
 
   let getAuth = () => {
-    let config = {
+    let config ={
       headers: {
-        "Content-Type": "application/json"
-      }
+        "Access-Control-Allow-Origin": "*",
+      },
+      mode: 'cors'
     }
+  
 
     let data = {
       "password": password,
       "email": email,
       "client_secret": env.CLIENT_SECRET,
       "client_id": env.CLIENT_ID,
-      "grant_type": "refresh_token"
+      "grant_type": "password"
     }
 
-    axios.post("https://owner-api.teslamotors.com/oauth/token", data, config).then((response) => {
-      console.log(response)
+    // axios.post("https://owner-api.teslamotors.com/oauth/token", JSON.stringify(data), config).then((response) => {
+    //   console.log(response)
+    //   console.log("COPY THIS: ", response.data.access_token)
+    // })
+    
+    axios({
+      method: 'post',
+      url: 'https://owner-api.teslamotors.com/oauth/token',
+      // withCredentials: false,
+      // mode: 'cors',
+      data: JSON.stringify(data),
+      headers: config
+    }).then((res) => {
+      console.log(res)
     })
-    // console.log(config, data, email, password)
+
+    console.log(JSON.stringify(config), JSON.stringify(data))
   }
 
   return (
