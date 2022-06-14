@@ -9,24 +9,46 @@ function App() {
   const [password, setPassword] = useState("");
 
   let getAuth = () => {
-    let config = {
+    let config ={
       headers: {
-        "Content-Type": "application/json"
+        "Access-Control-Allow-Origin": "*",
       }
     }
+  
 
     let data = {
-      "password": password,
-      "email": email,
-      "client_secret": env.CLIENT_SECRET,
-      "client_id": env.CLIENT_ID,
-      "grant_type": "refresh_token"
+      'client_id': 'ownerapi',
+      'code_challenge': '123',
+      'code_challenge_method': 'S256',
+      'redirect-uri': 'https://auth.tesla.com/void/callback',
+      'response_type': 'code',
+      'scope': "openid email offline_access",
+      'state': '12345',
+      'login_hint': email
     }
 
-    axios.post("https://owner-api.teslamotors.com/oauth/token", data, config).then((response) => {
-      console.log(response)
-    })
-    // console.log(config, data, email, password)
+    // axios.post("https://auth.tesla.com/oauth2/v3/authorize", JSON.stringify(data), config).then((response) => {
+    //   console.log(response)
+    //   console.log("COPY THIS: ", response.data.access_token)
+    // })
+    
+    // axios({
+    //   method: 'post',
+    //   url: 'https://auth.tesla.com/oauth2/v3/authorize',
+    //   // withCredentials: false,
+    //   // mode: 'cors',
+    //   data: JSON.stringify(data),
+    //   headers: config
+    // }).then((res) => {
+    //   console.log(res)
+    // })
+
+    // axios.get('https://auth.tesla.com/oauth2/v3/authorize')
+    fetch('https://auth.tesla.com/oauth2/v3/authorize').then((res) => {
+      console.log(res)
+    });
+
+    // console.log(JSON.stringify(config), JSON.stringify(data))
   }
 
   return (
