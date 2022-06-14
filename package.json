@@ -38,6 +38,10 @@
     ]
   },
   "react-dotenv": {
-    "whitelist": ["CLIENT_SECRET", "CLIENT_ID"]
-  }
+    "whitelist": [
+      "CLIENT_SECRET",
+      "CLIENT_ID"
+    ]
+  },
+  "proxy": "http://localhost:8080"
 }
