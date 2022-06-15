@@ -2,7 +2,7 @@
   "name": "tesla-charging",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3000/",
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
@@ -43,6 +43,5 @@
       "CLIENT_SECRET",
       "CLIENT_ID"
     ]
-  },
-  "proxy": "http://localhost:8080"
+  }
 }
