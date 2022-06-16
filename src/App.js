@@ -1,6 +1,5 @@
 import React from 'react';
-// import axios from 'axios';
-// import env from 'react-dotenv';
+import TestPage from './TestPage';
 import './App.css';
 
 function App() {
@@ -56,6 +55,7 @@ function App() {
       <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email"></input>
       <input value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" type="password"></input>
       <button onClick={() => getAuth()}>Get Auth</button> */}
+      <TestPage />
     </div>
   );
 }
